@@ -1,0 +1,81 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="bika">
+    <include package="plone.resource" file="meta.zcml"/>
+
+    <!-- main site/reports view -->
+
+    <browser:page
+      for="bika.lims.interfaces.IReportFolder"
+      name="productivity"
+      class="bika.lims.browser.reports.ProductivityView"
+      permission="zope2.View"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.lims.interfaces.IReportFolder"
+      name="qualitycontrol"
+      class="bika.lims.browser.reports.QualityControlView"
+      permission="zope2.View"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <browser:page
+      for="bika.lims.interfaces.IReportFolder"
+      name="administration"
+      class="bika.lims.browser.reports.AdministrationView"
+      permission="zope2.View"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+    <browser:page
+      for="bika.lims.interfaces.IReportFolder"
+      name="history"
+      class="bika.lims.browser.reports.ReportHistoryView"
+      permission="zope2.View"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+    <browser:page
+      for="bika.lims.interfaces.IReportFolder"
+      name="createreport"
+      class="bika.lims.browser.reports.SubmitForm"
+      permission="zope2.View"
+      layer="bika.lims.interfaces.IBikaLIMS"
+    />
+
+    <!-- seletion macros for query forms -->
+
+    <browser:page
+      for="*"
+      name="selection_macros"
+      class="bika.lims.browser.reports.selection_macros.SelectionMacrosView"
+      permission="zope.Public"
+    />
+
+    <!-- AJAX views for StandardAnalysis query form -->
+
+    <browser:page
+      for="*"
+      name="referenceanalysisqc_samples"
+      class="bika.lims.browser.reports.ReferenceAnalysisQC_Samples"
+      permission="zope.Public"
+    />
+
+    <browser:page
+      for="*"
+      name="referenceanalysisqc_services"
+      class="bika.lims.browser.reports.ReferenceAnalysisQC_Services"
+      permission="zope.Public"
+    />
+
+   <plone:static
+      directory="excel_files"
+      type="excel_files"
+      name="bika.lims"
+    />
+
+
+</configure>
